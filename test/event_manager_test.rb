@@ -1,8 +1,8 @@
-gem 'minitest'
+require 'minitest'
 require 'minitest/autorun'
 require './event_manager'
 
-class EventManagerTest < MiniTest::Unit::TestCase
+class EventManagerTest < MiniTest::Test
 
   def test_it_exists
     em = EventManager.new

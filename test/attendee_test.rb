@@ -10,11 +10,12 @@ class AttendeeTest < MiniTest::Test
   end
 
   def test_it_is_initialized_from_a_hash_of_data
-    data = {:first_name => 'George', :last_name => 'Washington', :phone_number => '2024556677'}
+    data = {:first_name => 'George', :last_name => 'Washington', :phone_number => '2024556677', :zip_code => '12345'}
     attendee = Attendee.new(data)
     assert_equal data[:first_name], attendee.first_name
     assert_equal data[:last_name], attendee.last_name
     assert_equal data[:phone_number], attendee.phone_number
+    assert_equal data[:zip_code], attendee.zip_code
   end
 
   def test_it_can_change_first_name
@@ -39,6 +40,14 @@ class AttendeeTest < MiniTest::Test
     assert_equal data[:phone_number], attendee.phone_number
     attendee.phone_number = "1231234567"
     assert_equal "1231234567", attendee.phone_number
+  end
+
+  def test_it_can_change_zip_code
+    data = {:zip_code => "12345"}
+    attendee = Attendee.new(data)
+    assert_equal data[:zip_code], attendee.zip_code
+    attendee.zip_code = "54321"
+    assert_equal "54321", attendee.zip_code
   end
 
 end

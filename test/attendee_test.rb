@@ -50,5 +50,15 @@ class AttendeeTest < MiniTest::Test
     assert_equal "54321", attendee.zip_code
   end
 
+  def test_it_can_be_created_from_a_csv_file
+    attendee = Attendee.new
+    filename = "./test/event_attendees_test.csv"
+    data = attendee.import_csv(filename)
+    assert_kind_of CSV, data
+    parsed_data = attendee.parse_data(data)
+    assert_equal parsed_data[0], "Allison"
+    assert_equal parsed_data[1], "SArah"
+  end
+
 end
 

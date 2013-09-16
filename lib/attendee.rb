@@ -27,17 +27,4 @@ class Attendee
     @zip_code = ZipCode.new(value)
   end
 
-  def import_csv(filename)
-    data = CSV.open filename, headers: true, header_converters: :symbol
-    return data
-  end
-
-  def parse_data(data) # move me into a new Class
-    parsed_data = data.collect do |row|
-      id = row[0]
-      name = row[:first_name]
-    end
-    return parsed_data
-  end
-
 end

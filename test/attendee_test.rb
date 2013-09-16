@@ -1,6 +1,7 @@
 require 'minitest'
 require 'minitest/autorun'
 require './lib/attendee'
+require './lib/attendee_data_import'
 
 class AttendeeTest < MiniTest::Test
 
@@ -50,14 +51,14 @@ class AttendeeTest < MiniTest::Test
     assert_equal "54321", attendee.zip_code
   end
 
-  def test_it_can_be_created_from_a_csv_file
-    attendee = Attendee.new
+  def test_it_can_create_dataset_from_csv
+    import = AttendeeDataImport.new
     filename = "./test/event_attendees_test.csv"
-    data = attendee.import_csv(filename)
-    assert_kind_of CSV, data
-    parsed_data = attendee.parse_data(data)
-    assert_equal parsed_data[0], "Allison"
-    assert_equal parsed_data[1], "SArah"
+    data = import.import_csv(filename)
+    parsed_data = import.parse_data(data)
+    attendees = import.create_attendees(parsed_data)
+    assert_kind_of Array, attendees
+    assert_equal "Chris", attendees.last.first_name
   end
 
 end
